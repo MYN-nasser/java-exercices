@@ -10,7 +10,9 @@ public class Hotel {
         this.chambres=chambres;
         this.nom=nom;
     }
-
+    public ArrayList<Chambre> getChambres() {
+        return this.chambres;
+    }
     public static void suppression(int num, Hotel hotel){
         for (int i=hotel.chambres.size()-1; i>=0;i--){
             if (hotel.chambres.get(i).getNumChambre()==num){
