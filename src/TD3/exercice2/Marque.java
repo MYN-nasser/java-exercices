@@ -23,4 +23,8 @@ public class Marque {
         return paysOrigine;
     }
 
+    public void Add_Product(Produit produit) {
+        produits.add(produit);
+    }
+
 }
