@@ -2,9 +2,7 @@ package TD3.exercice3;
 
 import TD3.exercice1.Personnne;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Enseignant extends Personne{
     public int id;
@@ -36,6 +34,45 @@ public class Enseignant extends Personne{
             }
         }
     }
+
+    public Map<Groupe, List<Etudiant>> envoyerAbsencesPourMatiere(Matiere matiere) {
+        Map<Groupe, List<Etudiant>> absencesParGroupe = new HashMap<>();
+
+        for (Groupe groupe : groupes) {
+            List<Etudiant> etudiantsAbsents = new ArrayList<>();
+
+            for (Etudiant etudiant : groupe.getEtudiants()) {
+                for (Abscence absence : etudiant.getAbscences()) {
+                    if (absence.getMatiere().equals(matiere)) {
+                        etudiantsAbsents.add(etudiant);
+                        break;
+                    }
+                }
+            }
+
+            if (!etudiantsAbsents.isEmpty()) {
+                absencesParGroupe.put(groupe, etudiantsAbsents);
+            }
+        }
+
+        return absencesParGroupe;
+    }
+
+    public void modificationNot(Etudiant etu, Matiere mat, double note) {
+        // Vérification directe si l'étudiant a la matière
+        if (etu.getMatieres().contains(mat)) {
+            for (Matiere m : etu.getMatieres()) {
+                if (m.equals(mat)) {
+                    m.setNote(note);
+                    System.out.println("La note a été modifiée avec succès");
+                    return; // On sort après la modification
+                }
+            }
+        } else {
+            System.out.println("Matière non trouvée pour cet étudiant");
+        }
+    }
+
 
 
     // GETTERS
