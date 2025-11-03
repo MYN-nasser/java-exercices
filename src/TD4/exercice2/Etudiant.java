@@ -3,6 +3,10 @@ package TD4.exercice2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toList;
 
 public class Etudiant {
 
@@ -42,10 +46,13 @@ public class Etudiant {
         List<String>lstNom = lst.stream().map(x->x.nom).toList();
 
         //question 3
+        Map<Integer,Etudiant> mapEtud = lst.stream().collect(toMap(e->e.id,e->e));
 
+        //question 4
+        double moyenne= lst.stream().mapToDouble(e->e.moyenne).average().orElse(0.0);;
 
-
-
+        //question 5
+        Map<String, List<String>> etudiantsParGroupe = lst.stream().collect(groupingBy(e -> e.groupe,mapping(e -> e.nom, toList())));
     }
 }
 
