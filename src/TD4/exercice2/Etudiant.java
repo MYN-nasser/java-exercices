@@ -53,6 +53,7 @@ public class Etudiant {
 
         //question 5
         Map<String, List<String>> etudiantsParGroupe = lst.stream().collect(groupingBy(e -> e.groupe,mapping(e -> e.nom, toList())));
+
     }
 }
 
