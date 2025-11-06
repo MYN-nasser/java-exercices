@@ -1,6 +1,8 @@
 package TD4.exercice3;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Etudiant {
@@ -21,10 +23,12 @@ public class Etudiant {
             this.notes = notes;
         }
 
-    public ArrayList<Etudiant> functionreturn(ArrayList<Etudiant>etud,int age, String pr) {
-        return etud.stream()
-                .filter(etudiant -> etudiant.age == age && etudiant.prenom.equals(pr));
+    public List<Etudiant> functionreturn(ArrayList<Etudiant>etud, int age, String pr) {
+            return  etud.stream().filter(p->p.prenom.equals(pr) && p.age==age).collect(Collectors.toList());
+    }
 
+    public List<String> retourneNames(ArrayList<Etudiant> etud) {
+        return etud.stream().filter(p-> p.notes.stream().allMatch(n->n>10)).map(p->p.nom).collect(Collectors.toList());
     }
 
 }
